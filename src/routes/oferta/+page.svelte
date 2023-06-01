@@ -36,7 +36,7 @@
       { name: 'Tuba Archmage', author: 'Rożki wysokocukrowe', color: 'green' },
       { name: 'List Openheimera', author: 'Owijki', color: 'grey' },
     ];
-    const links = [{name:'Home', link:'/'}, {name:'Oferta', link:'/oferta'}, {name:'Contact us', link:'/contact'}];
+    const links = [{name:'Home', link:'/'}, {name:'Oferta', link:'/oferta'}, {name:'Contact us', link:'/oferta'}];
   </script>
   
   <MaterialApp {theme}>

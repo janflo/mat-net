@@ -17,7 +17,7 @@
 	const items = [
     { name: 'Light', value: 'light' },
     { name: 'Dark', value: 'dark' }];
-    const links = [{name:'Home', link:'/'}, {name:'Oferta', link:'/oferta'}, {name:'Contact us', link:'/contact'}];
+    const links = [{name:'Home', link:'/'}, {name:'Oferta', link:'/oferta'}, {name:'Contact us', link:'/oferta'}];
 	function toggleTheme() {
 		if (theme === 'light') theme = 'dark';
 		else theme = 'light';
