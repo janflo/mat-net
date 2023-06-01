@@ -15,6 +15,7 @@
   import { mdiChevronDown , mdiDotsHorizontal} from '@mdi/js';
   import {  Menu, ListItem } from 'svelte-materialify';
 	import { mdiBrightness6, mdiMenu, mdiStar } from '@mdi/js';
+  import { SlideGroup, SlideItem, Ripple,Footer } from 'svelte-materialify';
 	let theme = 'light';
   let active = false;
 	function toggleNavigation() {
@@ -35,6 +36,7 @@
       { name: 'Tuba Archmage', author: 'Rożki wysokocukrowe', color: 'green' },
       { name: 'List Openheimera', author: 'Owijki', color: 'grey' },
     ];
+    const links = [{name:'Home', link:'/'}, {name:'Oferta', link:'/oferta'}, {name:'Contact us', link:'/contact'}];
   </script>
   
   <MaterialApp {theme}>
@@ -65,8 +67,8 @@
 				  </Button>
 		</AppBar>
 
-  <div class="d-flex justify-center mt-4 mb-4">
-    <div class="rounded elevation-2  pa-14 d-flex justify-center flex-wrap" style="flex-grow:1;max-width:800px;gap: 20px;">
+  <div class="d-flex elevation-8 justify-center mt-4 mb-4">
+    <div class="rounded elevation-8  pa-14 d-flex justify-center flex-wrap" style="flex-grow:1;max-width:800px;gap: 20px;">
       {#each songs as song, i}
         <!-- <Card class=" pa-4">
           <Row>
@@ -82,8 +84,8 @@
         </Card> -->
         <Card style="max-width:300px;">
           <img src="//picsum.photos/300?random={i}" alt="background" />
-          <CardTitle>Top western road trips {song.name}</CardTitle>
-          <CardSubtitle>1,000 miles of wonder {song.author}</CardSubtitle>
+          <CardTitle>{song.author} {song.name}</CardTitle>
+          <CardSubtitle>1,000 miles of wonder </CardSubtitle>
           <CardActions>
             <Button text class={song.color}>Button</Button>
             <Button text fab size="small" class="ml-auto" on:click={toggle}>
@@ -105,4 +107,36 @@
       {/each}
     </div>
   </div>
+<style>
+  .ss {
+    width: 200px;
+    height: 200px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--theme-dividers);
+  }
+</style>
+<SlideGroup centerActive activeClass="white-text">
+  {#each Array(15) as _, i}
+    <SlideItem let:active>
+      <div class="ss rounded" class:primary-color={active} use:Ripple><img src="//picsum.photos/200?random={i}" alt="background" /></div>
+    </SlideItem>
+  {/each}
+</SlideGroup>
+<div class="mt-4 mb-4"></div>
+<Footer padless  class="indigo theme--dark justify-center flex-column">
+  <div class="mt-2 mb-2">
+    {#each links as link}
+    <a href="{link.link}">
+    <Button text rounded>{link.name}</Button>
+  </a>
+    {/each}
+  </div>
+  <div class="indigo lighten-1 pa-2 text-center" style="width:100%">
+    2023 -
+    <b>JanFlo</b>
+  </div>
+  </Footer>
   </MaterialApp>

@@ -10,31 +10,41 @@
 		Slider,
 		Button
 	} from 'svelte-materialify';
-	import { Icon, NavigationDrawer, Overlay, Menu, ListItem } from 'svelte-materialify';
-	import { mdiBrightness6, mdiMenu, mdiStar } from '@mdi/js';
+	import { Icon, NavigationDrawer, Overlay, Menu, ListItem, Select, Footer } from 'svelte-materialify';
+	import { mdiBrightness6, mdiDotsHorizontal, mdiMenu, mdiStar } from '@mdi/js';
 	let theme = 'light';
 	let fluid = true;
-
+	const items = [
+    { name: 'Light', value: 'light' },
+    { name: 'Dark', value: 'dark' }];
+    const links = [{name:'Home', link:'/'}, {name:'Oferta', link:'/oferta'}, {name:'Contact us', link:'/contact'}];
 	function toggleTheme() {
 		if (theme === 'light') theme = 'dark';
 		else theme = 'light';
+		value1 = theme;
 	}
 	// function toggleTheme11() {
-	// 	if (value < 50) theme = 'dark';
-	// 	else theme = 'light';
+	// 	 if (value1 === 'light') theme = 'light';
+	// 	 else theme = 'dark';
 	// }
 	let value = 20;
+	 let value1 = 'light';
 
 	let active = false;
 	function toggleNavigation() {
 		active = !active;
 	}
-	$: if (value >= 50) theme = 'dark';
-	else theme = 'light';
+$: if (value >= 50) {theme = 'dark'; }
+	else {theme = 'light'; }
+
+
+	 $: (theme = value1);
+	
+	
 </script>
 
 <MaterialApp {theme}>
-	<Container {fluid}>
+	<Container   style="width:100%;height:auto;">
 	
 		<AppBar>
 			<div slot="icon">
@@ -47,7 +57,7 @@
 				<ListItem ><a href="/oferta">
 					<Button  depressed>
 						
-							<Icon path={mdiStar} class="mr-4" />
+							<Icon path={ mdiDotsHorizontal} class="mr-4" />
 						
 						Nasza Oferta
 					</Button>
@@ -67,12 +77,13 @@
 	
 	
 		<Row>
-			<Col cols={12} sm={12} md={6}><h3 class="mb-4">Svelte Materialify</h3></Col>
-			<Col cols={12} sm={12} md={6}>
+			<Col cols={12} sm={12} md={4}><h3 class="mb-4">Svelte Materialify</h3></Col>
+			<Col cols={12} sm={12} md={4}>
 				<br />
 				<Slider thumb persistentThumb bind:value  />
 				<!-- on:change={toggleTheme11} -->
 			</Col>
+			<Col cols={12} sm={12} md={4}>  <Select solo {items} bind:value={value1}  placeholder="Choose Theme" /></Col>
 		</Row>
 	
 	<br />
@@ -85,7 +96,7 @@
 				<div class="text-center ">
 		<a href="">
 			<Button class="primary-color ">
-				Star on GitHub {value}
+				Star on GitHub {value1}
 			</Button>
 		</a>
 		</div>
@@ -100,5 +111,21 @@
 		</Row>
 	
 		<br />
+		<div class="mt-4 mb-4"></div>
+	
+	<Footer padless absolute class="indigo theme--dark justify-center flex-column">
+		<div class="mt-2 mb-2">
+			{#each links as link}
+			<a href="{link.link}">
+			<Button text rounded>{link.name}</Button>
+		  </a>
+			{/each}
+		  </div>
+		<div class="indigo lighten-1 pa-2 text-center" style="width:100%">
+		  2023 -
+		  <b>JanFlo</b>
+		</div>
+	  </Footer>
+	  
 	</Container>
 </MaterialApp>
